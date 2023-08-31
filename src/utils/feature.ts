@@ -1,12 +1,62 @@
-// import axios from "axios";
-// import { generate } from "random-words";
+import axios from "axios";
+import { generate } from "random-words";
+import _ from "lodash";
 
-// export const fetchWords = async () =>{
-//     try {
-//        const words =  generate(8)
+const generateMcq = (meaning: { Text: string }[], idx: number): string[] => {
+  const correctAns: string = meaning[idx].Text;
 
-//     } catch (error) {
+  // An array with all words except for correct one
+  const allIncorrect = meaning.filter((i) => i.Text !== correctAns);
 
-//     }
+  // Randomly generating 3 words from allIncorrect
+  const incorrrectOption: string[] = _.sampleSize(allIncorrect, 3).map(
+    (i) => i.Text
+  );
 
-// }
+  const mcqOptions = _.shuffle([...incorrrectOption, correctAns]);
+
+  return mcqOptions;
+};
+
+export const fetchWords = async (params: LangType): Promise<WordType[]> => {
+  try {
+    const words = generate(8).map((i) => ({
+      Text: i,
+    }));
+
+    const response = await axios.post(
+      "https://microsoft-translator-text.p.rapidapi.com/translate",
+      words,
+      {
+        params: {
+          "to[0]": params,
+          "api-version": "3.0",
+          profanityAction: "NoAction",
+          textType: "plain",
+        },
+        headers: {
+          "content-type": "application/json",
+          "X-RapidAPI-Key":
+            "c94735635bmshd081d3be10548ffp187d3djsn09b94f09f22b",
+          "X-RapidAPI-Host": "microsoft-translator-text.p.rapidapi.com",
+        },
+      }
+    );
+
+    const received: FetchedDataType[] = response.data;
+
+    const arr: WordType[] = received.map((i, idx) => {
+      const options: string[] = generateMcq(words, idx);
+      return {
+        word: i.translations[0].text,
+        meaning: words[idx].Text,
+        options,
+      };
+    });
+
+    return arr;
+  } catch (error) {
+    console.log(error);
+    throw new Error("Something went wrong.");
+  }
+};

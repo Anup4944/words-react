@@ -14,3 +14,9 @@ type StateType = {
   error?: string;
   words: WordType[];
 };
+
+type FetchedDataType = {
+  translations: {
+    text: string;
+  }[];
+};
