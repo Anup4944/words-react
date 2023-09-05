@@ -20,18 +20,19 @@ const Quiz = () => {
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
   const { words } = useSelector((state: { root: StateType }) => state.root);
+
+  useEffect(() => {
+    if (count + 1 > words.length) navigate("/results");
+    dispatch(saveResult(result));
+  }, [result, count, words.length, dispatch, navigate]);
 
   const nextHandler = (): void => {
     setResult((prev) => [...prev, answer]);
     setCount((prev) => prev + 1);
     setAnswer("");
   };
-
-  useEffect(() => {
-    if (count + 1 > words.length) navigate("/result");
-    dispatch(saveResult(result));
-  }, [result]);
 
   return (
     <Container maxWidth="sm" sx={{ padding: "1rem" }}>

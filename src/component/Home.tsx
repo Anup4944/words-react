@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 const languages = [
   { name: "Japanese", code: "ja" },
   { name: "Hindi", code: "hi" },
-  { name: "Spanish", code: "sh" },
+  { name: "Spanish", code: "es" },
   { name: "French", code: "fr" },
 ];
 

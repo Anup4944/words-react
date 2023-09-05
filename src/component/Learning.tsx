@@ -39,7 +39,8 @@ const Learning = () => {
       });
 
     if (error) {
-      alert(error);
+      // alert(error);
+      console.log("From learning", error);
       dispatch(clearState());
     }
   }, [dispatch, error, params]);
