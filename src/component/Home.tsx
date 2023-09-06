@@ -19,13 +19,13 @@ const Home = () => {
   };
 
   return (
-    <Container maxWidth={"sm"}>
-      <Typography variant="h3" p={"2rem"} textAlign={"center"}>
+    <Container maxWidth="md">
+      <Typography variant="h3" style={{ padding: "2rem" }} align="center">
         Welcome, begin your journey of learning.
       </Typography>
       <Stack
-        direction={"row"}
-        spacing={"2rem"}
+        direction={{ xs: "column", sm: "row" }}
+        spacing={"1rem"}
         p={"2rem"}
         alignItems={"center"}
         justifyContent={"center"}

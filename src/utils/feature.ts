@@ -75,7 +75,6 @@ export const countMatchingElements = (
     if (arr1[i] === arr2[i]) matchingCount++;
   }
 
-  console.log(matchingCount);
   return matchingCount;
 };
 
