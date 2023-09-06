@@ -7,6 +7,9 @@ const languages = [
   { name: "Hindi", code: "hi" },
   { name: "Spanish", code: "es" },
   { name: "French", code: "fr" },
+  { name: "Greek", code: "el" },
+  { name: "Chinese", code: "zh" },
+  { name: "German", code: "de" },
 ];
 
 const Home = () => {

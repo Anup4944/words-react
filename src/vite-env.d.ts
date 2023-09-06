@@ -1,6 +1,6 @@
 /// <reference types="vite/client" />
 
-type LangType = "ja" | "hi" | "es" | "fr";
+type LangType = "ja" | "hi" | "es" | "fr" | "el" | "zh" | "de";
 
 type WordType = {
   word: string;

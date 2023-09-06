@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Container, Button, Typography, Stack } from "@mui/material";
 import { useSearchParams, useNavigate } from "react-router-dom";
 import { ArrowBack, VolumeUp } from "@mui/icons-material";
-import { fetchWords } from "../utils/feature";
+import { fetchAudio, fetchWords } from "../utils/feature";
 import { useDispatch, useSelector } from "react-redux";
 import {
   clearState,
@@ -14,6 +14,8 @@ import Loader from "./Loader";
 
 const Learning = () => {
   const [count, setCount] = useState<number>(0);
+  const [audioSrc, setAudioSrc] = useState<string>("");
+  const audioRef = useRef(null);
 
   const params = useSearchParams()[0].get("language") as LangType;
   const dispatch = useDispatch();
@@ -26,6 +28,7 @@ const Learning = () => {
 
   const nextHandler = (): void => {
     setCount((prev) => prev + 1);
+    setAudioSrc("");
   };
 
   useEffect(() => {
@@ -40,15 +43,28 @@ const Learning = () => {
 
     if (error) {
       // alert(error);
-      console.log("From learning", error);
+      console.log(error);
       dispatch(clearState());
     }
   }, [dispatch, error, params]);
 
   if (loading) return <Loader />;
 
+  const audioHandler = async () => {
+    const player: HTMLAudioElement = audioRef.current!;
+
+    if (player) {
+      player.play();
+    } else {
+      const data = await fetchAudio(words[count]?.word, params);
+
+      setAudioSrc(data);
+    }
+  };
+
   return (
     <Container maxWidth={"sm"} sx={{ padding: "1rem" }}>
+      {audioSrc && <audio src={audioSrc} autoPlay ref={audioRef}></audio>}
       <Button
         onClick={
           count === 0 ? () => navigate("/") : () => setCount((prev) => prev - 1)
@@ -67,7 +83,7 @@ const Learning = () => {
           : {words[count]?.meaning}
         </Typography>
         <Button sx={{ borderRadius: "50%" }}>
-          <VolumeUp />
+          <VolumeUp onClick={audioHandler} />
         </Button>
       </Stack>
 

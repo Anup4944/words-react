@@ -20,6 +20,8 @@ const generateMcq = (meaning: { Text: string }[], idx: number): string[] => {
 
 export const fetchWords = async (params: LangType): Promise<WordType[]> => {
   try {
+    const rapidKey = import.meta.env.VITE_MS_API;
+
     const words = generate(8).map((i) => ({
       Text: i,
     }));
@@ -36,8 +38,7 @@ export const fetchWords = async (params: LangType): Promise<WordType[]> => {
         },
         headers: {
           "content-type": "application/json",
-          "X-RapidAPI-Key":
-            "c94735635bmshd081d3be10548ffp187d3djsn09b94f09f22b",
+          "X-RapidAPI-Key": rapidKey,
           "X-RapidAPI-Host": "microsoft-translator-text.p.rapidapi.com",
         },
       }
@@ -76,4 +77,43 @@ export const countMatchingElements = (
 
   console.log(matchingCount);
   return matchingCount;
+};
+
+export const fetchAudio = async (
+  text: string,
+  language: LangType
+): Promise<string> => {
+  const key = import.meta.env.VITE_TEXT_TO_SPEECH_API;
+  const rapidKey = import.meta.env.VITE_RAPID_API;
+
+  const encodedParams = new URLSearchParams({
+    src: text,
+    r: "0",
+    c: "mp3",
+    f: "8khz_8bit_mono",
+    b64: "true",
+  });
+
+  if (language === "ja") encodedParams.set("hl", "ja-jp");
+  else if (language === "es") encodedParams.set("hl", "es-es");
+  else if (language === "fr") encodedParams.set("hl", "fr-fr");
+  else if (language === "el") encodedParams.set("hl", "el-gr");
+  else if (language === "zh") encodedParams.set("hl", "zh-cn");
+  else if (language === "de") encodedParams.set("hl", "de-de");
+  else encodedParams.set("hl", "hi-in");
+
+  const { data }: { data: string } = await axios.post(
+    "https://voicerss-text-to-speech.p.rapidapi.com/",
+    encodedParams,
+    {
+      params: { key },
+      headers: {
+        "content-type": "application/x-www-form-urlencoded",
+        "X-RapidAPI-Key": rapidKey,
+        "X-RapidAPI-Host": "voicerss-text-to-speech.p.rapidapi.com",
+      },
+    }
+  );
+
+  return data;
 };

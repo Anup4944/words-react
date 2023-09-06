@@ -42,7 +42,9 @@ const Quiz = () => {
       </Typography>
 
       <FormControl>
-        <FormLabel sx={{ mt: "2rem", mb: "1rem" }}>Meaning</FormLabel>
+        <FormLabel sx={{ mt: "2rem", mb: "1rem" }}>
+          Please select the correct answer from the given options.
+        </FormLabel>
         <RadioGroup value={answer} onChange={(e) => setAnswer(e.target.value)}>
           {words[count]?.options.map((i) => (
             <FormControlLabel value={i} control={<Radio />} label={i} key={i} />
