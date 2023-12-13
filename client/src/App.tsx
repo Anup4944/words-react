@@ -10,6 +10,7 @@ const Result = lazy(() => import("./component/Result"));
 const Login = lazy(() => import("./component/Login"));
 
 const App = () => {
+  const isAuth = false;
   return (
     <Router>
       <Header />

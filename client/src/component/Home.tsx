@@ -14,8 +14,10 @@ const languages = [
 
 const Home = () => {
   const navigate = useNavigate();
+
+  const isAuth = false;
   const languageHandler = (language: string): void => {
-    navigate(`/learn?language=${language}`);
+    isAuth ? navigate(`/learn?language=${language}`) : navigate(`/login`);
   };
 
   return (
