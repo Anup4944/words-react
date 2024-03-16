@@ -1,18 +1,19 @@
-import mongoose, { Document } from "mongoose";
+import mongoose, { Document, Model } from "mongoose";
 
-interface IUser {
+export interface IUser extends Document {
+  _id: string;
   name: string;
   photo: string;
   email: string;
   googleId: string;
+  createdAt: Date;
+  updatedAt: Date;
+  __v: number;
 }
 
-export interface IUserDocument extends IUser, Document {
-  id: string;
-}
-
-const userSchema = new mongoose.Schema<IUserDocument>(
+const userSchema = new mongoose.Schema(
   {
+    _id: String,
     name: String,
     photo: String,
     email: String,
@@ -27,4 +28,4 @@ const userSchema = new mongoose.Schema<IUserDocument>(
   }
 );
 
-export const User = mongoose.model<IUserDocument>("User", userSchema);
+export const User: Model<IUser> = mongoose.model<IUser>("User", userSchema);

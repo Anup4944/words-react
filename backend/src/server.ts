@@ -26,14 +26,14 @@ app.use(
     secret: process.env.SESSION_SECRET!,
     resave: false,
     saveUninitialized: true,
-    cookie: {
-      secure: false,
-      httpOnly: false,
-      sameSite: "none",
-      // secure: process.env.NODE_ENV === "development" ? false : true,
-      // httpOnly: process.env.NODE_ENV === "development" ? false : true,
-      // sameSite: process.env.NODE_ENV === "development" ? false : "none",
-    },
+    // cookie: {
+    //   secure: false,
+    //   httpOnly: false,
+    //   sameSite: "none",
+    //   // secure: process.env.NODE_ENV === "development" ? false : true,
+    //   // httpOnly: process.env.NODE_ENV === "development" ? false : true,
+    //   // sameSite: process.env.NODE_ENV === "development" ? false : "none",
+    // },
   })
 );
 

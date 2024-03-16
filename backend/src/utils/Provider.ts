@@ -1,6 +1,6 @@
 import { Strategy as GoogleStrategy } from "passport-google-oauth20";
 import passport from "passport";
-import { User, IUserDocument } from "../models/User";
+import { User, IUser } from "../models/User";
 
 export const connectPassport = () => {
   passport.use(
@@ -16,7 +16,7 @@ export const connectPassport = () => {
           googleId: profile.id,
         });
 
-        console.log(user);
+        console.log("USER from provider", user);
 
         if (!user) {
           const newUser = await User.create({
@@ -34,6 +34,7 @@ export const connectPassport = () => {
     )
   );
   passport.serializeUser((user, done) => {
+    console.log("seriallize", user);
     done(null, user);
   });
 

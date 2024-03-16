@@ -5,7 +5,7 @@ export const myProfile = async (
   next: NextFunction
 ) => {
   try {
-    console.log(req.user);
+    console.log("from controller", req.user);
     res.status(200).json({
       success: true,
       user: req.user,

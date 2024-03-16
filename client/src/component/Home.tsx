@@ -15,15 +15,18 @@ const languages = [
 const Home = () => {
   const navigate = useNavigate();
 
-  const isAuth = false;
+  const isAuth = true;
   const languageHandler = (language: string): void => {
     isAuth ? navigate(`/learn?language=${language}`) : navigate(`/login`);
   };
 
   return (
     <Container maxWidth="md">
-      <Typography variant="h3" style={{ padding: "2rem" }} align="center">
+      <Typography variant="h2" style={{ padding: "2.5rem" }} align="center">
         Welcome, begin your journey of learning.
+      </Typography>
+      <Typography variant="h3" p={"1.5rem"} textAlign={"center"}>
+        Choose one language from below
       </Typography>
       <Stack
         direction={{ xs: "column", sm: "row" }}
@@ -38,9 +41,6 @@ const Home = () => {
           </Button>
         ))}
       </Stack>
-      <Typography variant="h3" p={"2rem"} textAlign={"center"}>
-        Choose one language from above
-      </Typography>
     </Container>
   );
 };
