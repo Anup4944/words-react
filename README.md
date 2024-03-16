@@ -36,7 +36,7 @@ To get started with the development of this project:
 2. Navigate to the frontend and backend directories and install dependencies using `npm install`.
 3. Set up Google OAuth for authentication and obtain API keys for Microsoft Text Translator and Voicerss Text-to-Speech APIs.
 4. Configure environment variables for the frontend and backend with necessary credentials and API keys.
-5. Run the frontend and backend servers using `npm start`.
+5. Run the frontend and backend servers using `npm run dev`.
 
 ## Contributing
 
