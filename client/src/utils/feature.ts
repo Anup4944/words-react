@@ -57,7 +57,7 @@ export const fetchWords = async (params: LangType): Promise<WordType[]> => {
 
     return arr;
   } catch (error) {
-    console.log(error);
+    // console.log(error);
     throw new Error("Something went wrong.");
   }
 };
@@ -66,7 +66,7 @@ export const countMatchingElements = (
   arr1: string[],
   arr2: string[]
 ): number => {
-  console.log("FROM MATCHING", arr1, arr2);
+  // console.log("FROM MATCHING", arr1, arr2);
   if (arr1.length !== arr2.length) throw new Error("Invalid result");
 
   let matchingCount = 0;

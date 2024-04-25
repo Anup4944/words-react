@@ -22,21 +22,43 @@ const Home = () => {
 
   return (
     <Container maxWidth="md">
-      <Typography variant="h2" style={{ padding: "2.5rem" }} align="center">
+      <Typography
+        variant="h2"
+        style={{
+          padding: "2.5rem",
+          fontFamily: "Arial, sans-serif",
+          textAlign: "center",
+          fontWeight: "bold",
+          color: "#734c4c",
+        }}
+      >
         Welcome, begin your journey of learning.
       </Typography>
-      <Typography variant="h3" p={"1.5rem"} textAlign={"center"}>
+      <Typography
+        variant="h3"
+        style={{
+          padding: "1.5rem",
+          fontFamily: "Arial, sans-serif",
+          textAlign: "center",
+          color: "#211f1f",
+        }}
+      >
         Choose one language from below
       </Typography>
+
       <Stack
         direction={{ xs: "column", sm: "row" }}
-        spacing={"1rem"}
+        spacing={"2rem"}
         p={"2rem"}
         alignItems={"center"}
         justifyContent={"center"}
       >
         {languages.map((l) => (
-          <Button onClick={() => languageHandler(l.code)} key={l.code}>
+          <Button
+            onClick={() => languageHandler(l.code)}
+            key={l.code}
+            variant="contained"
+          >
             {l.name}
           </Button>
         ))}

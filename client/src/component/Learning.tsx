@@ -43,7 +43,7 @@ const Learning = () => {
 
     if (error) {
       // alert(error);
-      console.log(error);
+      // console.log(error);
       dispatch(clearState());
     }
   }, [dispatch, error, params]);

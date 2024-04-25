@@ -11,12 +11,17 @@ const Header = () => {
   return (
     <AppBar position="static">
       <Toolbar>
-        <Typography variant="h5" mr={"auto"}>
+        <Typography
+          variant="h5"
+          style={{
+            marginRight: "auto",
+            fontFamily: "Arial, sans-serif",
+            fontWeight: "bold",
+            color: "#CCCCCC",
+          }}
+        >
           LanguageListen: Multilingual Vocabulary Builder with Audio Support
         </Typography>
-        {/* <Link style={styles} to={"/"}>
-          Home
-        </Link> */}
       </Toolbar>
     </AppBar>
   );

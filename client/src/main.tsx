@@ -9,7 +9,7 @@ import { store } from "./redux/store.ts";
 const theme = createTheme({
   palette: {
     primary: {
-      main: "rgb(255,87,51)",
+      main: "#bc1d1d",
     },
   },
 });

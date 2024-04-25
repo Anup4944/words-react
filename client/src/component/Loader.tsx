@@ -18,7 +18,7 @@ const Loader = () => {
         }}
       >
         {" "}
-        <CircularProgress color="secondary" />
+        <CircularProgress color="primary" />
       </Box>
     </div>
   );
